@@ -64,11 +64,11 @@ void TestAsync( ) {
     std::vector<std::shared_ptr<Future<int>>> results;
     std::cout << "Async tasks: " << std::endl;
     for ( int i = 0; i < 10; i++ ) {
-        results.push_back( executor.Execute<int>( std::bind( sum, rand( ))));
+        results.push_back( executor.Execute<int>( std::bind( sum, rand( ) % 1000)));
     }
     std::cout << "Sync tasks: " << std::endl;
     for ( int i = 0; i < 3; i++ ) {
-        results.push_back( executor.Execute<int>( std::bind( sum, rand( )), false ));
+        results.push_back( executor.Execute<int>( std::bind( sum, rand( ) % 1000), false ));
     }
     for ( int i = 0; i < results.size( ); i++ ) {
         std::cout << results[ i ]->Get( ) << std::endl;

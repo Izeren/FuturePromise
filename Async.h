@@ -82,12 +82,10 @@ public:
     void CheckFinishedThreads( ) {
         for ( auto it = threads.begin( ); it != threads.end( ); ++it ) {
             if ( it->future->IsProcessed( )) {
-                std::cout << "Thread with id: " << it->thread.get_id( ) << " has already finished";
+                std::cout << "Thread with id: " << it->thread.get_id( ) << " has already finished\n";
                 it->thread.join( );
                 threads.erase( it );
                 it = threads.begin( );
-            } else {
-                it++;
             }
         }
     }
